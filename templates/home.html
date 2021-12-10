@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <div class="container my-5">
+      <h2>Add a Card</h2>
+      <form action="/" , method="POST">
+        <div class="mb-3">
+          <label for="ques" class="form-label">Add Question </label>
+          <input
+            type="text"
+            class="form-control"
+            id="ques"
+            aria-describedby="emailHelp"
+            name="ques"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="ans" class="form-label">Add Answer</label>
+          <input type="text" class="form-control" id="ans" name="ans" />
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary">Submit</button>
+      </form>
+    </div>
+
+    <div class="container my-5">
+
+      <h5>Flash Cards</h5>
+      
+          {% if at|length == 0%}
+
+          <div class="alert alert-dark" role="alert">
+            No records found . Please Add a Card.
+          </div>
+
+          {% else %} 
+
+          <table class="table table-border-4">
+            <thead>
+              <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Question</th>
+                <th scope="col">Reviews</th>
+                <th scope="col">Date and Time</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+        
+            {% for card in at %}
+        <tbody>
+            <tr>
+            <td>{{loop.index}}</td>
+            <td>{{card.ques}}</td>
+           <td><a type="button" href="/show/{{card.sno}}" class= "btn btn-outline-warning btn-sm mx-1">Show</button></td> 
+            <td>{{card.date_created}}</td>
+            <td>
+              <a type="button" href="/delete/{{card.sno}}" class= "btn btn-outline-danger btn-sm mx-1">Delete</button>
+              <a type="button" href="/update/{{card.sno}}" class= "btn btn-outline-warning btn-sm mx-1">Update</button>
+            </td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+         
+          {% endif %}
+      
+    </div>
+
+    <!-- Bootstrap-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+{% endblock body %}

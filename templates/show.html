@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block show %}
+<div class="container my-5">
+  <h2>Your Card</h2>
+  <form action="/show/{{card.sno}}" , method="POST">
+    <div class="mb-3">
+      <label for="ques" class="form-label">Your Question </label>
+      <input
+        type="text"
+        class="form-control"
+        id="ques"
+        aria-describedby="emailHelp"
+        name="ques"
+        value="{{card.ques}}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="ans" class="form-label">Your Answer</label>
+      <input
+        type="text"
+        class="form-control"
+        id="ans"
+        name="ans"
+        value="{{card.ans}}"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary">Back</button>
+  </form>
+</div>
+{% endblock show %}
